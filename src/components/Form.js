@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, InputGroup, Input } from 'reactstrap';
-import { add } from '../services/ternak';
 
 export default ({ onBaru }) => {
   return (
@@ -14,8 +13,7 @@ export default ({ onBaru }) => {
 
 const onKeyUp = (e, onBaru) => {
   if (e.keyCode === 13 && e.target.value !== ''){
-    add(e.target.value);
-    onBaru(e.target.value);
+    onBaru(e.target.value.toLowerCase());
     e.target.value = '';
   }
 }

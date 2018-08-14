@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from './components/Form';
 import List from './components/List';
 import Ternak from './components/Ternak';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { add, get } from './services/ternak';
 
 class App extends Component {
@@ -44,22 +44,24 @@ class App extends Component {
       this.setState({ ...this.state, data: ternak });
     })
     return (
-      <Container>
-        <Row>
-          <Ternak
-            ternak={this.state.ternak}
-            onDelete={ternak => this.onTernakDelete(ternak)}
-            onUpdate={ternak => this.onTernakUpdate(ternak)}/>
-        </Row>
-        <Row>
-          <Form onBaru={b => this.onBaru(b)}/>
-        </Row>
-        <Row>
-          <List
-            data={this.state.data}
-            baru={this.state.baru}
-            onItemClick={item => this.onItemClick(item)}/>
-        </Row>
+      <Container className="row">
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Row>
+            <Ternak
+              ternak={this.state.ternak}
+              onDelete={ternak => this.onTernakDelete(ternak)}
+              onUpdate={ternak => this.onTernakUpdate(ternak)}/>
+          </Row>
+          <Row>
+            <Form onBaru={b => this.onBaru(b)}/>
+          </Row>
+          <Row>
+            <List
+              data={this.state.data}
+              baru={this.state.baru}
+              onItemClick={item => this.onItemClick(item)}/>
+          </Row>
+        </Col>
       </Container>
     );
   }
