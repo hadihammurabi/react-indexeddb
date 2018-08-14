@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './components/Form';
 import List from './components/List';
+import Ternak from './components/Ternak';
 import { Container, Row } from 'reactstrap';
 import { get } from './services/ternak';
 
@@ -9,16 +10,24 @@ class App extends Component {
     super(props);
     this.state = {
       baru: '',
+      ternak: {},
       data: []
     };
   }
 
   onBaru (baru) {
-    const data = [...this.state.data, baru];
+    const data = [...this.state.data, { nama: baru }];
     this.setState({
-      baru,
+      ...this.state,
       data
     });
+  }
+
+  onItemClick (ternak) {
+    this.setState({
+      ...this.state,
+      ternak
+    })
   }
 
   render() {
@@ -28,10 +37,16 @@ class App extends Component {
     return (
       <Container>
         <Row>
+          <Ternak ternak={this.state.ternak}/>
+        </Row>
+        <Row>
           <Form onBaru={b => this.onBaru(b)}/>
         </Row>
         <Row>
-          <List data={this.state.data} baru={this.state.baru}/>
+          <List
+            data={this.state.data}
+            baru={this.state.baru}
+            onItemClick={item => this.onItemClick(item)}/>
         </Row>
       </Container>
     );
