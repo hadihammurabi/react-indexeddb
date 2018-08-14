@@ -1,24 +1,20 @@
 const dbVersion = 1;
 
-const onRequestSuccess = (e) => {
-  console.log('Database opened.');
-}
-
-const onRequestError = (e) => {
-  console.log('Database Error', e);
-}
-
-const onRequestUpgradeNeeded = (e) => {
-  console.log('Database Need Upgrade', e);
-}
-
 export default () => {
   const request = indexedDB.open("ternak", dbVersion);
-  request.onsuccess = onRequestSuccess;
   
-  request.onerror = onRequestError;
+  request.onerror = (e) => {
+    console.log('Database Error', e);
+  }
 
-  request.onupgradeneeded = onRequestUpgradeNeeded;
+  request.onsuccess = (e) => {
+    console.log('Database Opened');
+  }
+
+  request.onupgradeneeded = (e) => {
+    const db = e.target.result;
+    db.createObjectStore('ternak', { keyPath: 'ternak' });
+  }
 
   return request;
 }
