@@ -32,3 +32,6 @@ export const get = (callback) => {
   }
 }
 
+export const destroy = () => {
+
+}
