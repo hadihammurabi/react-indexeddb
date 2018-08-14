@@ -7,7 +7,7 @@ export default ({ baru, data }) => (
       {data.map((d, i) => 
         (
           <ListGroupItem key={i}>
-            {d}
+            {d.nama}
           </ListGroupItem>
         )
       )}

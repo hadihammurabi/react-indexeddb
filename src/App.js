@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from './components/Form';
 import List from './components/List';
 import { Container, Row } from 'reactstrap';
+import { get } from './services/ternak';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,9 @@ class App extends Component {
   }
 
   render() {
+    get(ternak => {
+      this.setState({ ...this.state, data: ternak });
+    })
     return (
       <Container>
         <Row>

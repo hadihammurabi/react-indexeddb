@@ -13,7 +13,7 @@ export default () => {
 
   request.onupgradeneeded = (e) => {
     const db = e.target.result;
-    db.createObjectStore('ternak', { keyPath: 'ternak' });
+    db.createObjectStore('ternak', { keyPath: 'nama' });
   }
 
   return request;
